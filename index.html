@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>tzdata example</title>
+    <script src="./tzdata.js"></script>
+    <script src="./timezone-utils.js"></script>
+    <script>
+        function onLoad() {
+            const timezoneIds = ['America/New_York', 'Europe/London', 'Asia/Tokyo'];
+            const timezonesData = getTimezonesData(timezoneIds);
+            //data console.log(JSON.stringify(timezonesData, null, 2));
+            exportToJson(timezonesData);
+        }
+
+         function exportToJson(data) {
+            // Convert data to JSON string with proper formatting
+            const jsonString = JSON.stringify(data, null, 2);
+            
+            // Create a Blob containing the JSON data
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            
+            // Create a download link
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'valid-timezones.json';
+            
+            // Add link to document and trigger download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            
+            // Clean up
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(downloadLink.href);
+        } 
+    </script>
+</head>
+<body onLoad="onLoad()">
+</body>
+</html>

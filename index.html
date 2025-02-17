@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>tzdata example</title>
@@ -7,34 +8,111 @@
     <script src="./timezone-utils.js"></script>
     <script>
         function onLoad() {
-            const timezoneIds = ['America/New_York', 'Europe/London', 'Asia/Tokyo'];
+
+            const timezoneIds = [
+                "Africa/Abidjan",
+                "Africa/Cairo",
+                "Africa/Casablanca",
+                "Africa/Johannesburg",
+                "Africa/Lagos",
+                "Africa/Tunis",
+                "America/Argentina/Buenos_Aires",
+                "America/Bogota",
+                "America/Chicago",
+                "America/Lima",
+                "America/Mexico_City",
+                "America/New_York",
+                "America/Santiago",
+                "America/Sao_Paulo",
+                "America/Toronto",
+                "Asia/Almaty",
+                "Asia/Amman",
+                "Asia/Baghdad",
+                "Asia/Bahrain",
+                "Asia/Bangkok",
+                "Asia/Beirut",
+                "Asia/Bishkek",
+                "Asia/Dubai",
+                "Asia/Gaza",
+                "Asia/Ho_Chi_Minh",
+                "Asia/Hong_Kong",
+                "Asia/Jakarta",
+                "Asia/Jerusalem",
+                "Asia/Kolkata",
+                "Asia/Kuala_Lumpur",
+                "Asia/Kuwait",
+                "Asia/Manila",
+                "Asia/Muscat",
+                "Asia/Qatar",
+                "Asia/Riyadh",
+                "Asia/Seoul",
+                "Asia/Shanghai",
+                "Asia/Singapore",
+                "Asia/Taipei",
+                "Asia/Tokyo",
+                "Atlantic/Reykjavik",
+                "Australia/Brisbane",
+                "Australia/Sydney",
+                "Europe/Amsterdam",
+                "Europe/Athens",
+                "Europe/Berlin",
+                "Europe/Brussels",
+                "Europe/Bucharest",
+                "Europe/Budapest",
+                "Europe/Chisinau",
+                "Europe/Copenhagen",
+                "Europe/Dublin",
+                "Europe/Helsinki",
+                "Europe/Istanbul",
+                "Europe/Kyiv",
+                "Europe/Lisbon",
+                "Europe/London",
+                "Europe/Luxembourg",
+                "Europe/Madrid",
+                "Europe/Moscow",
+                "Europe/Oslo",
+                "Europe/Paris",
+                "Europe/Prague",
+                "Europe/Riga",
+                "Europe/Rome",
+                "Europe/Stockholm",
+                "Europe/Tallinn",
+                "Europe/Vienna",
+                "Europe/Vilnius",
+                "Europe/Warsaw",
+                "Europe/Zurich",
+                "Pacific/Auckland"
+            ];
+
             const timezonesData = getTimezonesData(timezoneIds);
             //data console.log(JSON.stringify(timezonesData, null, 2));
             exportToJson(timezonesData);
         }
 
-         function exportToJson(data) {
+        function exportToJson(data) {
             // Convert data to JSON string with proper formatting
             const jsonString = JSON.stringify(data, null, 2);
-            
+
             // Create a Blob containing the JSON data
             const blob = new Blob([jsonString], { type: 'application/json' });
-            
+
             // Create a download link
             const downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = 'valid-timezones.json';
-            
+
             // Add link to document and trigger download
             document.body.appendChild(downloadLink);
             downloadLink.click();
-            
+
             // Clean up
             document.body.removeChild(downloadLink);
             URL.revokeObjectURL(downloadLink.href);
         } 
     </script>
 </head>
+
 <body onLoad="onLoad()">
 </body>
+
 </html>
